@@ -2,43 +2,34 @@
 @using global::Passcore;
 
 <h1>Passcore</h1>
+<div class="form-group row">
+    <label for="txvMasterKey" class="col-sm-2 col-form-label">MasterKey</label>
+    <div class="col-sm-10">
+        <input class="form-control" id="txvMasterKey" @bind="MasterKey"/>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="txvPasswd" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+        <input class="form-control" id="txvPasswd" @bind="Password"/>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="txvEnhance" class="col-sm-2 col-form-label">Enhance</label>
+    <div class="col-sm-10">
+        <input class="form-control" id="txvEnhance" @bind="Enhance"/>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="skbLength" class="col-sm-2  col-form-label">Length Control</label>
+    <div class="col-sm-10">
+        <input type="range" class="form-range" id="skbLength" min="0" max="@LengthMax" @bind="SkbLength">
+    </div>
+</div>
 
 <table>
-
-    <tr>
-        <td>
-            <label for="txvMasterKey" class="col-form-label">MasterKey</label>
-        </td>
-        <td>
-            <input class="form-control" id="txvMasterKey" @bind="MasterKey"/>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="txvPasswd" class="col-form-label">Password</label>
-        </td>
-        <td>
-            <input class="form-control" id="txvPasswd" @bind="Password"/>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <label for="txvEnhance" class="col-form-label">Enhance</label>
-        </td>
-        <td>
-            <input class="form-control" id="txvEnhance" @bind="Enhance"/>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <label for="skbLength" class="col-form-label">Length Control</label>
-        </td>
-        <td>
-            <input type="range" class="form-range" id="skbLength" min="0" max="@LengthMax" @bind="SkbLength">
-        </td>
-    </tr>
     <tr>
         <td>
             <input type="checkbox" id="ckbIsWeak" @bind="IsWeak">
@@ -51,32 +42,31 @@
             <label for="ckbIsChar"> Is Char Required</label>
         </td>
     </tr>
-    <tr>
-        <td>
-            <p>Password Length</p>
-        </td>
-        <td>
-            <p>@LengthStr</p>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <p>Result</p>
-        </td>
-        <td>
-            <p>@Result</p>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <button class="btn btn-primary" @onclick="GetResult">Generate</button>
-        </td>
-        <td>
-            <button class="btn btn-primary" @onclick="Clear">Clear</button>
-        </td>
-    </tr>
 </table>
 
+<div class="form-group row">
+    <label for="txLen" class="col-sm-2 col-form-label">Password Length</label>
+    <div class="col-sm-10">
+        <label id="txLen" class="col-sm-2 col-form-label">@LengthStr</label>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="txvResult" class="col-sm-2 col-form-label">Result</label>
+    <div class="col-sm-10">
+        <input class="form-control" id="txvResult" readonly @bind="Result"/>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="col">
+        <button class="btn btn-primary btn-lg btn-block" @onclick="GetResult">Generate</button>
+
+    </div>
+    <div class="col">
+        <button class="btn btn-secondary btn-lg btn-block" @onclick="Clear">Clear</button>
+
+    </div>
+</div>
 
 @code {
     private int _skbLength = 0;
