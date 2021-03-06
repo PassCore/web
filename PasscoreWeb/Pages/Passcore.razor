@@ -46,6 +46,10 @@
         get => _isWeak;
         set
         {
+            if (GetMax(value) < SkbLength)
+            {
+                _skbLength = GetMax(value);
+            }
             _isWeak = value;
             LengthStr = "Password Length: " + GetLength(SkbLength, value);
         }
