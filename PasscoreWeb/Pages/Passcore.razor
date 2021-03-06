@@ -7,59 +7,53 @@
 
     <tr>
         <td>
-            <p>MasterKey:</p>
+            <label for="txvMasterKey" class="col-form-label">MasterKey</label>
         </td>
         <td>
-            <input @bind="MasterKey"/>
+            <input class="form-control" id="txvMasterKey" @bind="MasterKey"/>
         </td>
     </tr>
     <tr>
         <td>
-            <p>Password:</p>
+            <label for="txvPasswd" class="col-form-label">Password</label>
         </td>
         <td>
-            <input @bind="Password"/>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <p>Enhance:</p>
-        </td>
-        <td>
-            <input @bind="Enhance"/>
+            <input class="form-control" id="txvPasswd" @bind="Password"/>
         </td>
     </tr>
 
     <tr>
         <td>
-            <p>Length Control:</p>
+            <label for="txvEnhance" class="col-form-label">Enhance</label>
         </td>
         <td>
-            <input type="range" min="0" max="@LengthMax" @bind="SkbLength" class="slider">
+            <input class="form-control" id="txvEnhance" @bind="Enhance"/>
+        </td>
+    </tr>
 
+    <tr>
+        <td>
+            <label for="skbLength" class="col-form-label">Length Control</label>
+        </td>
+        <td>
+            <input type="range" class="form-range" id="skbLength" min="0" max="@LengthMax" @bind="SkbLength">
         </td>
     </tr>
     <tr>
         <td>
-            <input type="checkbox" id="weak" @bind="IsWeak">
-            <label for="weak"> Weak password</label>
-        </td>
-        <td>
+            <input type="checkbox" id="ckbIsWeak" @bind="IsWeak">
+            <label for="ckbIsWeak"> Weak password</label>
         </td>
     </tr>
     <tr>
         <td>
-
-            <input type="checkbox" id="ischar" @bind="IsCharRequired">
-            <label for="ischar"> Is Char Required</label>
-        </td>
-        <td>
+            <input type="checkbox" id="ckbIsChar" @bind="IsCharRequired">
+            <label for="ckbIsChar"> Is Char Required</label>
         </td>
     </tr>
     <tr>
         <td>
-            <p>Password Length:</p>
+            <p>Password Length</p>
         </td>
         <td>
             <p>@LengthStr</p>
@@ -67,7 +61,7 @@
     </tr>
     <tr>
         <td>
-            <p>Result:</p>
+            <p>Result</p>
         </td>
         <td>
             <p>@Result</p>
