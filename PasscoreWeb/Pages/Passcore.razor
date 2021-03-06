@@ -3,43 +3,91 @@
 
 <h1>Passcore</h1>
 
-<p>
-    MasterKey:
-    <input @bind="MasterKey"/>
-</p>
+<table>
 
-<p>
-    Password: <input @bind="Password"/>
-</p>
+    <tr>
+        <td>
+            <p>MasterKey:</p>
+        </td>
+        <td>
+            <input @bind="MasterKey"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>Password:</p>
+        </td>
+        <td>
+            <input @bind="Password"/>
+        </td>
+    </tr>
 
-<p>
-    Enhance: <input @bind="Enhance"/>
-</p>
+    <tr>
+        <td>
+            <p>Enhance:</p>
+        </td>
+        <td>
+            <input @bind="Enhance"/>
+        </td>
+    </tr>
 
-<p>
-    Length Control:
-    <input type="range" min="0" max="@LengthMax" @bind="SkbLength" class="slider">
-</p>
+    <tr>
+        <td>
+            <p>Length Control:</p>
+        </td>
+        <td>
+            <input type="range" min="0" max="@LengthMax" @bind="SkbLength" class="slider">
 
-<input type="checkbox" id="weak" @bind="IsWeak">
-<label for="weak"> Weak password</label>
-<br>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="checkbox" id="weak" @bind="IsWeak">
+            <label for="weak"> Weak password</label>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
 
-<input type="checkbox" id="ischar" @bind="IsCharRequired">
-<label for="ischar"> Is Char Required</label>
-
-<p>@LengthStr</p>
-
-<p>Result: @Result</p>
-
-<button class="btn btn-primary" @onclick="GetResult">Generate</button>
-<button class="btn btn-primary" @onclick="Clear">Clear</button>
+            <input type="checkbox" id="ischar" @bind="IsCharRequired">
+            <label for="ischar"> Is Char Required</label>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>Password Length:</p>
+        </td>
+        <td>
+            <p>@LengthStr</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>Result:</p>
+        </td>
+        <td>
+            <p>@Result</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="btn btn-primary" @onclick="GetResult">Generate</button>
+        </td>
+        <td>
+            <button class="btn btn-primary" @onclick="Clear">Clear</button>
+        </td>
+    </tr>
+</table>
 
 
 @code {
     private int _skbLength = 0;
     private bool _isWeak;
-    private string LengthStr { get; set; } = "Password Length: " + GetLength(0);
+    private string LengthStr { get; set; } = GetLength(0).ToString();
 
     private bool IsWeak
     {
@@ -51,7 +99,7 @@
                 _skbLength = GetMax(value);
             }
             _isWeak = value;
-            LengthStr = "Password Length: " + GetLength(SkbLength, value);
+            LengthStr = GetLength(SkbLength, value).ToString();
         }
     }
 
@@ -61,7 +109,7 @@
         set
         {
             _skbLength = value;
-            LengthStr = "Password Length: " + GetLength(value, IsWeak);
+            LengthStr = GetLength(value, IsWeak).ToString();
         }
     }
 
