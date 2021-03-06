@@ -1,0 +1,128 @@
+﻿@page "/passcore"
+@using global::Passcore;
+
+<h1>Passcore</h1>
+
+<p>
+    MasterKey:
+    <input @bind="MasterKey"/>
+</p>
+
+<p>
+    Password: <input @bind="Password"/>
+</p>
+
+<p>
+    Enhance: <input @bind="Enhance"/>
+</p>
+
+<p>
+    Length Control:
+    <input type="range" min="0" max="@LengthMax" @bind="SkbLength" class="slider">
+</p>
+
+<input type="checkbox" id="weak" @bind="IsWeak">
+<label for="weak"> Weak password</label>
+<br>
+
+<input type="checkbox" id="ischar" @bind="IsCharRequired">
+<label for="ischar"> Is Char Required</label>
+
+<p>@LengthStr</p>
+
+<p>Result: @Result</p>
+
+<button class="btn btn-primary" @onclick="GetResult">Generate</button>
+<button class="btn btn-primary" @onclick="Clear">Clear</button>
+
+
+@code {
+    private int _skbLength = 0;
+    private bool _isWeak;
+    private string LengthStr { get; set; } = "Password Length: " + GetLength(0);
+
+    private bool IsWeak
+    {
+        get => _isWeak;
+        set
+        {
+            _isWeak = value;
+            LengthStr = "Password Length: " + GetLength(SkbLength, value);
+        }
+    }
+
+    private int SkbLength
+    {
+        get => _skbLength;
+        set
+        {
+            _skbLength = value;
+            LengthStr = "Password Length: " + GetLength(value, IsWeak);
+        }
+    }
+
+    private int LengthMax
+    {
+        get => GetMax(IsWeak);
+    }
+
+    private string MasterKey { get; set; }
+    private string Enhance { get; set; }
+    private string Password { get; set; }
+    private bool IsCharRequired { get; set; }
+    private string Result { get; set; }
+
+    private static readonly int[] WeakLength = {4, 6, 8, 10};
+
+    private static readonly int[] NormLength = {12, 16, 24, 32, 48, 64, 128, 256, 384, 512};
+
+    public static int GetMax(bool isWeak = false)
+    {
+        if (isWeak)
+            return WeakLength.Length - 1;
+        return NormLength.Length - 1;
+    }
+
+    public static int GetLength(int index, bool isWeak = false)
+    {
+        if (isWeak)
+            return WeakLength[index];
+        return NormLength[index];
+    }
+
+    private void Clear()
+    {
+        MasterKey = Enhance = Password = Result = "";
+    }
+
+    private void GetResult()
+    {
+        Result = global::Passcore.Passcore.GeneratePassword(
+            GetDic(),
+            GetLength(SkbLength, IsWeak),
+            MasterKey == null ? "" : MasterKey,
+            Password == null ? "" : Password,
+            Enhance == null ? "" : Enhance
+            );
+    }
+
+    private (char[] dict, int occur)[] GetDic()
+    {
+        if (IsCharRequired)
+            return new (char[] dict, int occur)[]
+            {
+                (Tables.LatinLower, 0),
+                (Tables.LatinUpper, 0),
+                (Tables.Number, 0),
+                (Tables.Symbol, 0)
+            };
+        else
+            return new (char[] dict, int occur)[]
+            {
+                (Tables.LatinLower, 0),
+                (Tables.LatinUpper, 0),
+                (Tables.Number, 0)
+            };
+    }
+
+}
