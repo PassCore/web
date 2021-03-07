@@ -1,5 +1,6 @@
 ﻿@page "/passcore"
 @using global::Passcore;
+@using System.Text
 
 <h1>Passcore</h1>
 <div class="form-group row">
@@ -55,11 +56,14 @@
 </div>
 
 <div class="form-group row">
-    <div class="col-sm-12 col-md-6" style="margin-bottom: 1rem;">
+    <div class="col-sm-12 col-md-4" style="margin-bottom: 1rem;">
         <button class="col-sm-12 col-md-12 btn btn-primary btn-lg" @onclick="GetResult">Generate</button>
     </div>
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-12 col-md-4" style="margin-bottom: 1rem;">
         <button class="col-sm-12 col-md-12 btn btn-secondary btn-lg" @onclick="Clear">Clear</button>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <button class="col-sm-12 col-md-12 btn btn-secondary btn-lg" @onclick="Random">Random</button>
     </div>
 </div>
 
@@ -102,6 +106,22 @@
     private string Password { get; set; }
     private bool IsCharRequired { get; set; }
     private string Result { get; set; }
+
+    private static int KRNG(int min, int max)
+        => new Random(Guid.NewGuid().GetHashCode()).Next(min, max);
+
+    private void Random()
+    {
+        var dic = GetDic();
+        StringBuilder sb = new StringBuilder();
+        var len = GetLength(SkbLength, IsWeak);
+        for (int i = 0; i < len; ++i)
+        {
+            var m = dic[KRNG(0, dic.Length)].dict;
+            sb.Append(m[KRNG(0, m.Length)]);
+        }
+        Result = sb.ToString();
+    }
 
     private static readonly int[] WeakLength = {4, 6, 8, 10};
 
