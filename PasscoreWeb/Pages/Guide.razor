@@ -1,0 +1,94 @@
+﻿@page "/guide"
+
+<h1>Passcore Guide <span class="badge badge-secondary">Alpha</span></h1>
+<p>You are closer to the password security.</p>
+
+<h2>Contents</h2>
+<ul>
+    <li >
+        What is Passcore?
+    </li>
+    <li>
+        How does Passcore work?
+    </li>
+    <li>
+        Why Passcore?
+    </li>
+    <li>
+        License
+    </li>
+</ul>
+
+<h2 >What is Passcore?</h2>
+<p>
+    After seeing a new project, almost everyone may ask a very similar question: What's it? Especially projects like Passcore, which has no detail information.
+    <br>
+    Back to the main point, what is passcore. In some ways, passcore is password generator which is a cryptography tool intends to protect your password.
+    <br>
+    Wait, don't move away, passcore is not a kind of traditional tool, it is a new, special solution to solve password issue. Let's move forward to understand how it works and why passcore.
+</p>
+
+<h2>How does Passcore work?</h2>
+<p>
+    In some ways, passcore is a digest algorithm. It combines three strings into one, and keep it with a high strength. Each part will influence the result completely.
+</p>
+<div style="text-align: center;">
+    <code>
+        <pre>
+Master Key    ─┐                                  
+Password      ─┼──────────→ High-Strength Password
+Enhance Field ─┘                                  </pre>
+    </code>
+</div>
+<p>
+    Maybe you want to ask why we need 3 strings? Isn't one is enough?
+    <br>
+    This is a good question. Try think: how to remember a long string without any mistake? It is a really hard task for everyone.
+    <br>
+    However, if we seperate it into three parts, you only need to remember one simple part and every thing will be changed. So that is why we set to three fields.
+</p>
+
+<h2>Why Passcore?</h2>
+
+<h4>Cryptography Security</h4>
+<p>
+    Security is the most important thing. You can access our core to find how we realise the core part. Here is the link:
+    <br>
+    <a href="https://github.com/Passcore/core">https://github.com/Passcore/core</a>
+</p>
+
+
+<h4>Open Source</h4>
+<p>
+    Maybe someone may say open source is a basic operation.
+    However, if you paid attention to current password related field,
+    you may find most of famous tools need to be charged and are closed-source.
+    Open source is one of the strengths of passcore.
+    Most of Passcore components are licensed under <a href="https://github.com/KevinZonda/OKZL/">OKZL</a> series.
+    Most of passcore programmes are licensed under <a href="https://raw.githubusercontent.com/KevinZonda/OKZL/main/okzpl/LICENSE">OKZPL</a>,
+    a derivative license from MIT license by <a href="https://github.com/KevinZonda">KevinZonda</a>.
+    According to opensource community, we can find do our cryptography algorithms work fine.
+</p>
+<h4>No Storage Needed</h4>
+<p>
+    Different to traditional password management tools, the core part of passcore does not need any storage. If you do not trust storaging in disk, passcore will not be a bac solution.
+</p>
+<h4>Hard To Wild Kids</h4>
+<p>
+    Wild kids will not know what this application for, so it may help prevent from their naughty.
+</p>
+<h4>Far From Internet</h4>
+<p>
+    Core part of passcore does not need any Internet connection, that means most of the threats will disapear.
+</p>
+
+<h2>License</h2>
+<p>
+    The guide is licensed under <a href="https://github.com/Passcore/guide/blob/main/LICENSE">CC-BY-NC-ND</a>.
+    <br>
+    You can access its source at <a href="https://github.com/Passcore/guide">https://github.com/Passcore/guide</a>.
+    <br>
+    Passcore Web and core components are licensed under <a href="https://github.com/Passcore/web/blob/master/LICENSE">OKZPL</a>.
+    <br>
+    You can access source code at <a href="https://github.com/Passcore/web">https://github.com/Passcore/web</a>.
+</p>
